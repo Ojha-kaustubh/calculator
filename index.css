@@ -1,0 +1,133 @@
+/* General reset and global styles */
+body {
+    background-color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent unnecessary scrollbars */
+    margin: 0;
+    padding: 0;
+}
+
+/* Flex container for centering calculator */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    background-color: #e0e0e0;
+    position: relative; /* Ensure pseudo-element covers entire container */
+}
+
+/* Calculator styling */
+.calc {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width */
+    max-width: 400px; /* Max width for larger screens */
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Ensure stacking context for button animations */
+}
+
+/* Input display */
+.calc .input {
+    font-size: 24px;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button container */
+.calc > div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+    gap: 10px; /* Gap between buttons */
+}
+
+/* Individual button styling */
+.calc button {
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden; /* Hide ripple overflow */
+    outline: none; /* Remove outline on focus */
+    margin: 5px; /* Add margin between buttons */
+    padding: 0; /* Ensure no extra padding inside buttons */
+}
+
+/* Hover state */
+.calc button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+}
+
+/* Active state */
+.calc button:active {
+    background-color: #3e8e41;
+    transform: scale(0.95);
+}
+
+/* Ripple effect */
+.calc button::before {
+    content: '';
+    position: absolute;
+    width: 300%; /* Larger than button for ripple effect */
+    height: 300%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 50%;
+    pointer-events: none; /* Prevent interaction with ripple */
+}
+
+/* Hover ripple effect */
+.calc button:hover::before {
+    transform: scale(1.5);
+    opacity: 0;
+}
+
+/* Active ripple effect */
+.calc button:active::before {
+    opacity: 0.3; /* Dim the ripple effect on click */
+}
+
+/* Background Animation */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #3f51b5, #2196f3, #4caf50, #8bc34a, #cddc39, #ffeb3b, #ffc107, #ff9800, #ff5722, #f44336, #e91e63, #9c27b0);
+    z-index: -1;
+    animation: backgroundAnimation 60s ease infinite;
+    pointer-events: none;
+}
+
+/* Background Animation keyframes */
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
